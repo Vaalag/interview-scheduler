@@ -1,9 +1,8 @@
-version: "3.8"
-
 services:
   db:
     image: postgres:15
     container_name: scheduler-db
+    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root123
@@ -16,10 +15,17 @@ services:
   backend:
     build: ./backend
     container_name: scheduler-backend
+    restart: always
     ports:
       - "5000:5000"
     depends_on:
       - db
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: root123
+      DB_NAME: scheduler
+      DB_PORT: 5432
 
   frontend:
     build: ./frontend

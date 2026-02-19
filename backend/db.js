@@ -1,10 +1,10 @@
-const { Pool } = require("pg");
+const { Pool } = require("pg");   // ✅ YOU FORGOT THIS LINE
 
 const pool = new Pool({
   user: "postgres",
-  host: "db",          // IMPORTANT: must be "db" (docker service name)
+  host: "scheduler-db",   // docker service name
   database: "scheduler",
-  password: "root123", // your password
+  password: "root123",
   port: 5432,
 });
 
